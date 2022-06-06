@@ -25,10 +25,7 @@ const ArtistPage: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Music App</title>
-        <meta
-          name="description"
-          content="Search a song and get details on the artist"
-        />
+        <meta name="description" content="Get details on the artist" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
