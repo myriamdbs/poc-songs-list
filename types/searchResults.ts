@@ -41,4 +41,6 @@ export type tTrack = {
 
 export type tSearchResults = {
   data: tTrack[]
+  total: number
+  next: string
 }
