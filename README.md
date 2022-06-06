@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# How to run the project
 
-## Getting Started
+### To Retrieve Project :
 
-First, run the development server:
+1. Clone the repository on your machine
 
 ```bash
-npm run dev
-# or
+git clone https://github.com/myriamdbs/poc-songs-list.git
+```
+
+2. Install Dependencies
+
+```bash
+yarn install
+```
+
+3. run the development server:
+
+```bash
+yarn start
+or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Search for "Eminem", as example, in the search bar
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# What I have achieve or not
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Achievements :
 
-## Learn More
+- Display search bar and a search button to submit artist research
+- Create a service to manage API calls and separate concerns
+- Display a table with artist's tracks list result
+- Artist name result is clickable to redirect to the artist detail page
 
-To learn more about Next.js, take a look at the following resources:
+## Misses :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Calls to Deezer API fall into CORS error and I didn't success to solve the issue.
+- API data are mocked returning Eminem info details, so you can look for other artists for now
+- Search bar and results table could be separated components to improve app scalability and separation of concerns.
+- The artist page is very minimalist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The misses are in the order of importance as next steps to enhance the current app.
