@@ -9,12 +9,21 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { searchSongs } from '../services'
 import Script from 'next/script'
 import { tSearchResults } from '../types/searchResults'
+import Paper from '@mui/material/Paper'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableCell from '@mui/material/TableCell'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
 
 const Home: NextPage = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [searchResults, setSearchResults] = useState<tSearchResults>({
     data: [],
+    total: 0,
+    next: '',
   })
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +32,6 @@ const Home: NextPage = () => {
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    // call to Deezer API
     event.preventDefault()
     setBtnDisabled(true)
     const songsData = await searchSongs(searchValue)
@@ -63,6 +71,31 @@ const Home: NextPage = () => {
             </Button>
           </form>
         </Box>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>artist</TableCell>
+                <TableCell align="right">track title</TableCell>
+                <TableCell align="right">album</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {searchResults.data.map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.artist.name}
+                  </TableCell>
+                  <TableCell align="right">{row.title}</TableCell>
+                  <TableCell align="right">{row.album.title}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </main>
     </div>
   )
