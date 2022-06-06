@@ -57,55 +57,61 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Which song are you looking for ?</h1>
-        <Box>
-          <form className={styles.wrapper} onSubmit={handleSubmit}>
-            <TextField
-              fullWidth
-              id="song-search"
-              label="Search a song or an artist"
-              variant="outlined"
-              placeholder="ex : Eminem, ..."
-              onChange={handleChange}
-            />
-            <Button variant="contained" disabled={btnDisabled} type="submit">
-              <SearchIcon />
-            </Button>
-          </form>
-        </Box>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>artist</TableCell>
-                <TableCell align="right">track title</TableCell>
-                <TableCell align="right">album</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {searchResults.data.map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    onClick={() => {
-                      router.push({
-                        pathname: '/artist',
-                        query: { id: row.artist.id },
-                      })
-                    }}
-                  >
-                    {row.artist.name}
+
+        <form className={styles.formWrapper} onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            id="song-search"
+            label="Search a song or an artist"
+            variant="outlined"
+            placeholder="ex : Eminem, ..."
+            onChange={handleChange}
+          />
+          <Button variant="contained" disabled={btnDisabled} type="submit">
+            <SearchIcon />
+          </Button>
+        </form>
+
+        {searchResults.data.length > 0 && (
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead className={styles.tableHeader}>
+                <TableRow>
+                  <TableCell className={styles.textHeader}>Artist</TableCell>
+                  <TableCell className={styles.textHeader} align="center">
+                    {"Track's title"}
                   </TableCell>
-                  <TableCell align="right">{row.title}</TableCell>
-                  <TableCell align="right">{row.album.title}</TableCell>
+                  <TableCell className={styles.textHeader} align="right">
+                    {"Album's title"}
+                  </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {searchResults.data.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      onClick={() => {
+                        router.push({
+                          pathname: '/artist',
+                          query: { id: row.artist.id },
+                        })
+                      }}
+                    >
+                      {row.artist.name}
+                    </TableCell>
+                    <TableCell align="center">{row.title}</TableCell>
+                    <TableCell align="right">{row.album.title}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </main>
     </div>
   )

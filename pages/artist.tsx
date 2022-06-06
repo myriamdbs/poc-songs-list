@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -32,9 +33,9 @@ const ArtistPage: NextPage = () => {
       </Head>
       <main className={styles.main}>
         {artistDetails && (
-          <>
+          <Box>
             <h1 className={styles.title}>{artistDetails.name}</h1>
-          </>
+          </Box>
         )}
       </main>
     </div>
