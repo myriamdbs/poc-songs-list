@@ -16,8 +16,10 @@ import TableHead from '@mui/material/TableHead'
 import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
+  const router = useRouter()
   const [searchValue, setSearchValue] = useState<string>('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [searchResults, setSearchResults] = useState<tSearchResults>({
@@ -38,7 +40,6 @@ const Home: NextPage = () => {
     setSearchResults(songsData)
   }
 
-  console.log(searchResults)
   return (
     <div className={styles.container}>
       <Script
@@ -86,7 +87,16 @@ const Home: NextPage = () => {
                   key={row.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    onClick={() => {
+                      router.push({
+                        pathname: '/artist',
+                        query: { id: row.artist.id },
+                      })
+                    }}
+                  >
                     {row.artist.name}
                   </TableCell>
                   <TableCell align="right">{row.title}</TableCell>
