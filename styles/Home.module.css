@@ -33,6 +33,18 @@
   font-size: 1.125rem;
 }
 
+.artistCell {
+  display: flex;
+  align-items: center;
+}
+
+.helpIcon {
+  margin-left: 6px;
+  display: flex;
+  place-items: center;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1250px) {
   .title {
     font-size: 4rem;

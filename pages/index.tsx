@@ -3,7 +3,6 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
 import SearchIcon from '@mui/icons-material/Search'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { searchSongs } from '../services'
@@ -17,6 +16,7 @@ import TableCell from '@mui/material/TableCell'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import { useRouter } from 'next/router'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -101,8 +101,12 @@ const Home: NextPage = () => {
                           query: { id: row.artist.id },
                         })
                       }}
+                      className={styles.artistCell}
                     >
-                      {row.artist.name}
+                      {row.artist.name}{' '}
+                      <span className={styles.helpIcon}>
+                        <HelpOutlineIcon />
+                      </span>
                     </TableCell>
                     <TableCell align="center">{row.title}</TableCell>
                     <TableCell align="right">{row.album.title}</TableCell>
